@@ -1,10 +1,13 @@
 package com.example.ClinicaOdontologicaVV.dto.entrada;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
+
+
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 public class DomicilioEntradaDto {
+
 
     @NotBlank(message = "Debe especificar el nombre de la calle")
     private String calle;
@@ -13,8 +16,10 @@ public class DomicilioEntradaDto {
     @Digits(integer = 8, fraction = 0, message = "El número debe tener como máximo 8 dígitos")
     private int numero;
 
+
     @NotBlank(message = "Debe especificar la localidad")
     private String localidad;
+
 
     @NotBlank(message = "Debe especificar la provincia")
     private String provincia;

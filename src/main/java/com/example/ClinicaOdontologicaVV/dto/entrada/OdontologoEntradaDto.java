@@ -1,18 +1,22 @@
 package com.example.ClinicaOdontologicaVV.dto.entrada;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 
 public class OdontologoEntradaDto {
 
     @Digits(message = "Debe especificar el numero de matricula de odontologo", integer = 10, fraction = 0)
     @Positive(message = "La matricula no puede ser negativa")
     private int numeroMatricula;
-    @NotBlank (message = "el nombre no debe ir en blanco")
+    @NotBlank(message = "el nombre no debe ir en blanco")
     private String nombre;
     @NotBlank(message = "el apellido no denbe ir en blanco")
     private String apellido;
+
+    public OdontologoEntradaDto() {
+    }
 
     public OdontologoEntradaDto(int numeroMatricula, String nombre, String apellido) {
 

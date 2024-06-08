@@ -2,37 +2,44 @@ package com.example.ClinicaOdontologicaVV.dto.entrada;
 
 import com.example.ClinicaOdontologicaVV.entity.Domicilio;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import org.springframework.beans.factory.annotation.Value;
 
+
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class PacienteEntradaDto {
-   @NotBlank(message = "Debe ingresar nombre de paciente")
-   @Size(max = 40, message = "El nombre solo permite 40 caracteres")
+    @NotBlank(message = "Debe ingresar nombre de paciente")
+    @Size(max = 40, message = "El nombre solo permite 40 caracteres")
+    @Pattern(regexp = "[a-zA-Z]+", message = "El nombre solo puede contener letras")
     private String nombre;
+
     @NotBlank(message = "Debe ingresar apellido de paciente")
     @Size(max = 40, message = "El apellido solo permite 40 caracteres")
+    @Pattern(regexp = "[a-zA-Z]+", message = "El nombre solo puede contener letras")
     private String apellido;
+
     @Positive(message = "el dni del paciente debe no debe ser nulo ni negativo")
     private int dni;
-    @FutureOrPresent(message = "La fecha de ingreo no puede ser menor al dia de hoy")
+
+    @FutureOrPresent(message = "La fecha de ingreso no puede ser menor al dia de hoy")
     @NotNull(message = "Debe ingresar los datos de fecha ingreso del paciente")
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private LocalDate fechaIngreso;
+
     @NotNull(message = "el domicilio no debe ser nulo")
     @Valid
-    private DomicilioEntradaDto domicilio;
+    private DomicilioEntradaDto domicilioEntradaDto;
 
-
+    public PacienteEntradaDto() {
+    }
 
     public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto  domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
+        this.domicilioEntradaDto = domicilioEntradaDto;
     }
 
 
@@ -68,12 +75,12 @@ public class PacienteEntradaDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public DomicilioEntradaDto getDomicilio() {
-        return domicilio;
+    public DomicilioEntradaDto getdomicilioEntradaDto() {
+        return domicilioEntradaDto;
     }
 
-    public void setDomicilio(DomicilioEntradaDto domicilio) {
-        this.domicilio = domicilio;
+    public void setdomicilioEntradaDto(DomicilioEntradaDto domicilioEntradaDto) {
+        this.domicilioEntradaDto = domicilioEntradaDto;
     }
 
 

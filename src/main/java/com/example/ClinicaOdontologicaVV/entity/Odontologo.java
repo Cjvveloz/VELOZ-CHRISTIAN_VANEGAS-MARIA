@@ -1,9 +1,18 @@
 package com.example.ClinicaOdontologicaVV.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ODONTOLOGOS")
 public class Odontologo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 10)
     private int numeroMatricula;
+    @Column(length = 50)
     private String nombre;
+    @Column(length = 50)
     private String apellido;
 
     public Odontologo(int numeroMatricula, String nombre, String apellido) {

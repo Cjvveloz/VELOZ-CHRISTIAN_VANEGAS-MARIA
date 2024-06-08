@@ -1,12 +1,11 @@
 package com.example.ClinicaOdontologicaVV.dto.entrada;
 
-import com.example.ClinicaOdontologicaVV.entity.Odontologo;
-import com.example.ClinicaOdontologicaVV.entity.Paciente;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.Valid;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class TurnoEntradaDto {
@@ -20,7 +19,8 @@ public class TurnoEntradaDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private LocalDateTime  fechaYHora;
 
-
+    public TurnoEntradaDto() {
+    }
 
     public TurnoEntradaDto(Long id, PacienteEntradaDto paciente, OdontologoEntradaDto odontologo, LocalDateTime fechaYHora) {
 

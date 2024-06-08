@@ -1,11 +1,20 @@
 package com.example.ClinicaOdontologicaVV.service;
 
+import com.example.ClinicaOdontologicaVV.dto.entrada.PacienteEntradaDto;
+import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
 import com.example.ClinicaOdontologicaVV.entity.Paciente;
 
 import java.util.List;
 
 public interface IPacienteService {
 
-    Paciente registrarPaciente(Paciente paciente);
-    List<Paciente> listarPacientes();
+    PacienteSalidaDto registrarPaciente(PacienteEntradaDto pacienteEntradaDto);
+
+    List<PacienteSalidaDto> listarPacientes();
+
+    PacienteSalidaDto buscarPacientePorId(Long id);
+
+    void elimiarPaciente(Long id);
+
+    PacienteSalidaDto actualizarPaciente(PacienteEntradaDto pacienteEntradaDto, Long id);
 }

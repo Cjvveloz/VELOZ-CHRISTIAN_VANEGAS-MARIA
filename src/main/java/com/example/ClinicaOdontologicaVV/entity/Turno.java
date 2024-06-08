@@ -1,13 +1,22 @@
 package com.example.ClinicaOdontologicaVV.entity;
-
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "TURNOS")
 public class Turno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "odontologo_id", nullable = false)
     private Odontologo odontologo   ;
+    @Column(nullable = false)
     private LocalDateTime  fechaYHora;
 
     public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
