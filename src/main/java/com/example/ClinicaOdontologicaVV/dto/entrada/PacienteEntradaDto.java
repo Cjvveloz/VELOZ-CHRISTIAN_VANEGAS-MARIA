@@ -1,6 +1,6 @@
 package com.example.ClinicaOdontologicaVV.dto.entrada;
 
-import com.example.ClinicaOdontologicaVV.entity.Domicilio;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
@@ -34,7 +34,7 @@ public class PacienteEntradaDto {
     public PacienteEntradaDto() {
     }
 
-    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto  domicilio) {
+    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilioEntradaDto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;

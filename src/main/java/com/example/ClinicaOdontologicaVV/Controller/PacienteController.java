@@ -28,21 +28,25 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.registrarPaciente(pacienteEntradaDto), HttpStatus.CREATED);
     }
 
-    //GET
+
 
     @GetMapping("/listar")
     public ResponseEntity<List<PacienteSalidaDto>>  listarPacientes(){
         return new ResponseEntity<>(pacienteService.listarPacientes(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")//localhost:8080/pacientes/x
+    public ResponseEntity<PacienteSalidaDto> buscarPacientePorId(@PathVariable Long id){
+        return new ResponseEntity<>(pacienteService.buscarPacientePorId(id), HttpStatus.OK);
+    }
     //POST
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<PacienteSalidaDto> actualizarPaciente(@RequestBody @Valid PacienteEntradaDto pacienteEntradaDto, @PathVariable Long id){
         return new ResponseEntity<>(pacienteService.actualizarPaciente(pacienteEntradaDto, id), HttpStatus.OK);
     }
 
     //DELETE
-    @DeleteMapping("/paciente/eliminar")
+    @DeleteMapping("/eliminar")
     public  ResponseEntity<?> eliminarPaciente(@RequestParam Long id){
         pacienteService.elimiarPaciente(id);
         return new ResponseEntity<>("Paciente eliminado con exito", HttpStatus.NO_CONTENT);

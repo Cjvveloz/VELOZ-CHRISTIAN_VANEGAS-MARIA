@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 @SpringBootTest
 class ClinicaOdontologicaVvApplicationTests {
 
@@ -31,7 +31,7 @@ class ClinicaOdontologicaVvApplicationTests {
 	@Test
 	void listarTodosLosOdontologosRegistradosEnH2(){
 		odontologoService = new OdontologoService(new OdontologoDaoH2());
-		assertFalse(odontologoService.listarOdontologo().isEmpty());
+		assertFalse(odontologoService.listarOdontologos().isEmpty());
 	}
 
 

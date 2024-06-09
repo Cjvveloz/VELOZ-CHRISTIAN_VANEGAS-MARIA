@@ -43,7 +43,7 @@ public class PacienteService implements IPacienteService {
                 .stream()
                 .map(paciente -> modelMapper.map(paciente, PacienteSalidaDto.class))
                 .toList();
-        LOGGER.info("Listado de pacientes: {}", pacientes);
+       // LOGGER.info("Listado de pacientes: " + pacientes);
 
 
         return pacientes;

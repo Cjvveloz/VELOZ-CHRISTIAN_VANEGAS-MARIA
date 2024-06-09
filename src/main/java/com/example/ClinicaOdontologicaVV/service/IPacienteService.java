@@ -2,7 +2,7 @@ package com.example.ClinicaOdontologicaVV.service;
 
 import com.example.ClinicaOdontologicaVV.dto.entrada.PacienteEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
-import com.example.ClinicaOdontologicaVV.entity.Paciente;
+
 
 import java.util.List;
 

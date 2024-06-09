@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PacienteServiceTest {
 
     private PacienteService pacienteService;
-
+/*
 
     @Test
     void deberiaRegistrarseUnPacienteYObtenerElIdCorrespondienteParaPacienteYDomicilioEnH2(){

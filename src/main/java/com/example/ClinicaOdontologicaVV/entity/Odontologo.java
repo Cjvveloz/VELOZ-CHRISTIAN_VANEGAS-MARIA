@@ -10,10 +10,14 @@ public class Odontologo {
     private Long id;
     @Column(length = 10)
     private int numeroMatricula;
-    @Column(length = 50)
+
+        @Column(length = 50)
     private String nombre;
     @Column(length = 50)
     private String apellido;
+
+    public Odontologo() {
+    }
 
     public Odontologo(int numeroMatricula, String nombre, String apellido) {
         this.numeroMatricula = numeroMatricula;
