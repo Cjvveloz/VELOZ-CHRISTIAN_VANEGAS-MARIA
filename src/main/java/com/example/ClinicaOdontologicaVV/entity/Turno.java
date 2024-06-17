@@ -1,8 +1,8 @@
 package com.example.ClinicaOdontologicaVV.entity;
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "TURNOS")
@@ -17,7 +17,7 @@ public class Turno {
     @JoinColumn(name = "odontologo_id", nullable = false)
     private Odontologo odontologo   ;
     @Column(nullable = false)
-    private LocalDateTime  fechaYHora;
+    private LocalDateTime fechaYHora;
 
     public Turno() {
     }

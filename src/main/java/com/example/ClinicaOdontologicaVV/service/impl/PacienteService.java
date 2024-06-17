@@ -3,6 +3,7 @@ package com.example.ClinicaOdontologicaVV.service.impl;
 import com.example.ClinicaOdontologicaVV.dto.entrada.PacienteEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
 import com.example.ClinicaOdontologicaVV.entity.Paciente;
+import com.example.ClinicaOdontologicaVV.exceptions.ResourceNotFoundException;
 import com.example.ClinicaOdontologicaVV.repository.PacienteRepository;
 import com.example.ClinicaOdontologicaVV.service.IPacienteService;
 import org.modelmapper.ModelMapper;
@@ -63,12 +64,14 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public void elimiarPaciente(Long id) {
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
 
         if (buscarPacientePorId(id) != null) {
         pacienteRepository.deleteById(id);
         LOGGER.warn("Paciente con ID: " + id +" eliminado");
-            }else{}
+            }else{
+            throw  new ResourceNotFoundException("No existe registro de paciente con ese id  " + id);
+        }
 
     }
 

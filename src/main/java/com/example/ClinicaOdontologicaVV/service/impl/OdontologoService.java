@@ -6,6 +6,7 @@ import com.example.ClinicaOdontologicaVV.dto.salida.OdontologoSalidaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
 import com.example.ClinicaOdontologicaVV.entity.Odontologo;
 import com.example.ClinicaOdontologicaVV.entity.Paciente;
+import com.example.ClinicaOdontologicaVV.exceptions.ResourceNotFoundException;
 import com.example.ClinicaOdontologicaVV.repository.OdontologoRepository;
 import com.example.ClinicaOdontologicaVV.service.IOdontologoService;
 import org.modelmapper.ModelMapper;
@@ -70,11 +71,14 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public void eliminarOdontologo(Long id) {
+    public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
         if (buscarOdontologoPorId(id) != null){
             odontologoRepository.deleteById(id);
             LOGGER.warn("Odontologo con ID: " + id +" eliminado");
-        }else{}
+        }else{
+            throw  new ResourceNotFoundException("No existe registro de Odontologo con ese id  " + id);
+
+        }
     }
 
     @Override

@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 public class PacienteEntradaDto {
+
+   private  Long id;
     @NotBlank(message = "Debe ingresar nombre de paciente")
     @Size(max = 40, message = "El nombre solo permite 40 caracteres")
     @Pattern(regexp = "[a-zA-Z]+", message = "El nombre solo puede contener letras")
@@ -34,7 +36,8 @@ public class PacienteEntradaDto {
     public PacienteEntradaDto() {
     }
 
-    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilioEntradaDto) {
+    public PacienteEntradaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilioEntradaDto) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -43,12 +46,22 @@ public class PacienteEntradaDto {
     }
 
 
+
+
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getApellido() {

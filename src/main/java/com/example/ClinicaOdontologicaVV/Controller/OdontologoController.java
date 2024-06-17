@@ -3,6 +3,7 @@ package com.example.ClinicaOdontologicaVV.Controller;
 import com.example.ClinicaOdontologicaVV.dto.entrada.OdontologoEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.OdontologoSalidaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
+import com.example.ClinicaOdontologicaVV.exceptions.ResourceNotFoundException;
 import com.example.ClinicaOdontologicaVV.service.IOdontologoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +39,8 @@ public class OdontologoController {
     public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@RequestBody @Valid OdontologoEntradaDto odontologoEntradaDto, @PathVariable Long id){
         return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologoEntradaDto, id), HttpStatus.OK);
     }
-    @DeleteMapping("/odontologo/eliminar")
-    public  ResponseEntity<?> eliminarOdontologo(@RequestParam Long id){
+    @DeleteMapping("/eliminar")
+    public  ResponseEntity<?> eliminarOdontologo(@RequestParam Long id) throws ResourceNotFoundException {
         odontologoService.eliminarOdontologo(id);
         return new ResponseEntity<>("Odontologo eliminado con exito", HttpStatus.NO_CONTENT);
 

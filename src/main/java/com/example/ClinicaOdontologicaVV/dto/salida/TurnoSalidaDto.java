@@ -11,7 +11,8 @@ public class TurnoSalidaDto {
     private Odontologo odontologo   ;
     private LocalDateTime  fechaYHora;
 
-
+    public TurnoSalidaDto() {
+    }
 
     public TurnoSalidaDto(Long id, Paciente paciente, Odontologo odontologo, LocalDateTime fechaYHora) {
         this.paciente = paciente;
