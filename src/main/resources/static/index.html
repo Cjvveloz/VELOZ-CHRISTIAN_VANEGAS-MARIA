@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App web de citas odontológicas</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="js/script.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <h1>Citas Odontológicas</h1>
+  </header>
+  <main>
+    <section class="menu">
+      <nav>
+        <div class="subnav">
+          <button class="subnavButton" id="pacientes-button" onclick="openMenu('pacientes')">Pacientes <i class="fa fa-caret-down"></i></i></button>
+          <div class="subnav_content" id="pacientes-subnav" >
+            <button class="links" onclick="getSearch('paciente')" id="buscar-pac">Buscar</button>
+            <button class="links" onclick="getAdd('paciente')" id="registrar-pac">Registrar</button>
+            <button class="links" onclick="getList('paciente')" id="listar-pac">Listar</button>
+          </div>
+        </div>
+        <div class="subnav">
+          <button class="subnavButton" id="odontologos-button" onclick="openMenu('odontologos')">Odontologos <i class="fa fa-caret-down"></i></button>
+          <div class="subnav_content" id="odontologos-subnav">
+            <button class="links" onclick="getSearch('odontologo')" id="buscar-odo">Buscar</button>
+            <button class="links" onclick="getAdd('odontologo')" id="registrar-odo">Registrar</button>
+            <button class="links" onclick="getList('odontologo')" id="listar-odo">Listar</button>
+          </div>
+        </div>
+        <div class="subnav">
+          <button class="subnavButton" id="turnos-button" onclick="openMenu('turnos')">Turnos <i class="fa fa-caret-down"></i></button>
+          <div class="subnav_content" id="turnos-subnav">
+            <button class="links" onclick="getSearch('turno')" id="buscar-tur">Buscar</button>
+            <button class="links" onclick="getAdd('turno')" id="registrar-tur">Registrar</button>
+            <button class="links" onclick="getList('turno')" id="listar-tur">Listar</button>
+          </div>
+        </div>
+      </nav>
+    </section>
+
+    <section id="main-content" >
+      <h2>Información de la cita</h2>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 App web de citas odontológicas</p>
+  </footer>
+</body>
+
+</html>
