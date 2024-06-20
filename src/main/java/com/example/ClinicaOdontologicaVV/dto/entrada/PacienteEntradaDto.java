@@ -1,6 +1,7 @@
 package com.example.ClinicaOdontologicaVV.dto.entrada;
 
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
@@ -31,6 +32,7 @@ public class PacienteEntradaDto {
 
     @NotNull(message = "el domicilio no debe ser nulo")
     @Valid
+    @JsonAlias("domicilio")
     private DomicilioEntradaDto domicilioEntradaDto;
 
     public PacienteEntradaDto() {
