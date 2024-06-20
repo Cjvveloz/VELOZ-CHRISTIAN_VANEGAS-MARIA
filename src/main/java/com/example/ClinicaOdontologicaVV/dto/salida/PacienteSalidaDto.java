@@ -5,7 +5,7 @@ import com.example.ClinicaOdontologicaVV.entity.Domicilio;
 import java.time.LocalDate;
 
 public class PacienteSalidaDto {
-
+    private Long id;
     private String nombre;
     private String apellido;
     private int dni;
@@ -13,6 +13,15 @@ public class PacienteSalidaDto {
     private DomicilioSalidaDto domicilioSalidaDto;
 
     public PacienteSalidaDto() {
+    }
+
+    public PacienteSalidaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilioSalidaDto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fechaIngreso = fechaIngreso;
+        this.domicilioSalidaDto = domicilioSalidaDto;
     }
 
     public PacienteSalidaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioSalidaDto domicilioSalidaDto) {
@@ -25,6 +34,14 @@ public class PacienteSalidaDto {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setNombre(String nombre) {

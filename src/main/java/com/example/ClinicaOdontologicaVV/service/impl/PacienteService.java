@@ -1,5 +1,6 @@
 package com.example.ClinicaOdontologicaVV.service.impl;
 
+import com.example.ClinicaOdontologicaVV.Utils.JsonPrinter;
 import com.example.ClinicaOdontologicaVV.dto.entrada.PacienteEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.salida.PacienteSalidaDto;
 import com.example.ClinicaOdontologicaVV.entity.Paciente;
@@ -30,11 +31,11 @@ public class PacienteService implements IPacienteService {
     public PacienteSalidaDto registrarPaciente(PacienteEntradaDto pacienteEntradaDto) {
         //mapeo de DTO a entidad
         //pacienteIDao.registrar(pacienteEntradaDto);
-        LOGGER.info("PacienteEntradaDto: " + pacienteEntradaDto);
+        LOGGER.info("PacienteEntradaDto: " + JsonPrinter.toString(pacienteEntradaDto));
         Paciente paciente = modelMapper.map(pacienteEntradaDto, Paciente.class);
-        LOGGER.info("PacienteEntidad: " + paciente);
+        LOGGER.info("PacienteEntidad: " + JsonPrinter.toString(paciente));
         PacienteSalidaDto pacienteSalidaDto = modelMapper.map(pacienteRepository.save(paciente), PacienteSalidaDto.class);
-        LOGGER.info("PacienteSalidaDto: " + pacienteSalidaDto);
+        LOGGER.info("PacienteSalidaDto: " + JsonPrinter.toString(pacienteSalidaDto));
         return pacienteSalidaDto;
     }
 
@@ -44,7 +45,8 @@ public class PacienteService implements IPacienteService {
                 .stream()
                 .map(paciente -> modelMapper.map(paciente, PacienteSalidaDto.class))
                 .toList();
-       // LOGGER.info("Listado de pacientes: " + pacientes);
+        LOGGER.info("Listado de todos los pacientes: {}", JsonPrinter.toString(pacientes));
+
 
 
         return pacientes;
@@ -58,7 +60,7 @@ public class PacienteService implements IPacienteService {
 
         if (pacienteBuscado != null){
             pacienteEncontrado = modelMapper.map(pacienteBuscado, PacienteSalidaDto.class);
-            LOGGER.info("Paciente encontrado: {}" + pacienteEncontrado);
+            LOGGER.info("Paciente encontrado: {}", JsonPrinter.toString(pacienteEncontrado));
         }
         return pacienteEncontrado;
     }
@@ -76,7 +78,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public PacienteSalidaDto actualizarPaciente(PacienteEntradaDto pacienteEntradaDto, Long id) {
+    public PacienteSalidaDto actualizarPaciente(PacienteEntradaDto pacienteEntradaDto, Long id) throws ResourceNotFoundException{
 
         Paciente pacienteRecibido = modelMapper.map(pacienteEntradaDto, Paciente.class);
         Paciente pacienteAActualizar = pacienteRepository.findById(id).orElse(null);
@@ -90,9 +92,10 @@ public class PacienteService implements IPacienteService {
 
             pacienteRepository.save(pacienteAActualizar);
             pacienteSalidaDto = modelMapper.map(pacienteAActualizar, PacienteSalidaDto.class);
-            LOGGER.warn("Paciente actualizado: " +pacienteSalidaDto );
+            LOGGER.warn("Paciente actualizado: {} ", JsonPrinter.toString(pacienteSalidaDto) );
         }else{
-            LOGGER.error("No fue posibloe encontrar datos de paciente " );
+
+            throw  new ResourceNotFoundException("No fue posible encontrar datos de paciente");
         }
 
         return pacienteSalidaDto;

@@ -15,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("turnos")
+@CrossOrigin("http://localhost:63342")
 public class TurnoController {
 
     private  ITurnoService turnoService;
@@ -39,12 +40,12 @@ public class TurnoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TurnoSalidaDto> actualizarTurno(@RequestBody @Valid TurnoEntradaDto turnoEntradaDto, @PathVariable Long id){
+    public ResponseEntity<TurnoSalidaDto> actualizarTurno(@RequestBody @Valid TurnoEntradaDto turnoEntradaDto, @PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>(turnoService.actualizarTurno(turnoEntradaDto, id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/eliminar")
-    public  ResponseEntity<?> eliminarTurno(@RequestParam Long id) throws ResourceNotFoundException {
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurnoPorId(id);
         return new ResponseEntity<>("Turno eliminado con exito", HttpStatus.NO_CONTENT);
 

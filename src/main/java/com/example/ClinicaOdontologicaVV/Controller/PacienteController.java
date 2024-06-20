@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("pacientes")
+@CrossOrigin("http://localhost:63342")
 public class PacienteController {
 
     //peticion http json --> @requestody & @responseBody--> java dto --> servicio dto <--> entidad -> persistencia entidad<--> base de datos
@@ -41,13 +42,13 @@ public class PacienteController {
     }
     //POST
     @PutMapping("/{id}")
-    public ResponseEntity<PacienteSalidaDto> actualizarPaciente(@RequestBody @Valid PacienteEntradaDto pacienteEntradaDto, @PathVariable Long id){
+    public ResponseEntity<PacienteSalidaDto> actualizarPaciente(@RequestBody @Valid PacienteEntradaDto pacienteEntradaDto, @PathVariable Long id) throws ResourceNotFoundException {
         return new ResponseEntity<>(pacienteService.actualizarPaciente(pacienteEntradaDto, id), HttpStatus.OK);
     }
 
     //DELETE
-    @DeleteMapping("/eliminar")
-    public  ResponseEntity<?> eliminarPaciente(@RequestParam Long id) throws ResourceNotFoundException {
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);
         return new ResponseEntity<>("Paciente eliminado con exito", HttpStatus.NO_CONTENT);
 

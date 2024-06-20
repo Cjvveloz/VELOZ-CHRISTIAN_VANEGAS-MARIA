@@ -1,5 +1,6 @@
 package com.example.ClinicaOdontologicaVV.service.impl;
 
+import com.example.ClinicaOdontologicaVV.Utils.JsonPrinter;
 import com.example.ClinicaOdontologicaVV.dto.entrada.OdontologoEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.entrada.PacienteEntradaDto;
 import com.example.ClinicaOdontologicaVV.dto.entrada.TurnoEntradaDto;
@@ -60,11 +61,11 @@ public class TurnoService implements ITurnoService {
         turno.setOdontologo(odontologo);
         turno.setFechaYHora(turnoEntradaDto.getFechaYHora());
 
-        LOGGER.info("TurnoEntidad a guardar: " + turno);
+        LOGGER.info("TurnoEntidad a guardar: " + JsonPrinter.toString(turno));
 
         // Guardar el turno en el repositorio y mapear a TurnoSalidaDto
         TurnoSalidaDto turnoSalidaDto = modelMapper.map(turnoRepository.save(turno), TurnoSalidaDto.class);
-        LOGGER.info("TurnoSalidaDto creado: " + turnoSalidaDto);
+        LOGGER.info("TurnoSalidaDto creado: " +  JsonPrinter.toString(turnoSalidaDto));
 
         return turnoSalidaDto;
     }
@@ -75,7 +76,7 @@ public class TurnoService implements ITurnoService {
                 .stream()
                 .map(turno -> modelMapper.map(turno, TurnoSalidaDto.class))
                 .toList();
-        LOGGER.info("Listado de Turnos: {}", turnos);
+        LOGGER.info("Listado de Turnos: {}",  JsonPrinter.toString(turnos));
         return turnos;
     }
 
@@ -85,7 +86,7 @@ public class TurnoService implements ITurnoService {
         TurnoSalidaDto turnoEncontrado = null;
         if (turnoBuscado != null){
             turnoEncontrado = modelMapper.map(turnoBuscado, TurnoSalidaDto.class);
-            LOGGER.info("Turno encontrado: {}" + turnoEncontrado);
+            LOGGER.info("Turno encontrado: {}", JsonPrinter.toString(turnoEncontrado));
         }
         return turnoEncontrado;
     }
@@ -101,7 +102,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto actualizarTurno(TurnoEntradaDto turnoEntradaDto, Long id) {
+    public TurnoSalidaDto actualizarTurno(TurnoEntradaDto turnoEntradaDto, Long id) throws ResourceNotFoundException {
 
         Turno turnoRecibido = modelMapper.map(turnoEntradaDto, Turno.class);
         Turno turnoAActualizar = turnoRepository.findById(id).orElse(null);
@@ -122,9 +123,10 @@ public class TurnoService implements ITurnoService {
 
             turnoRepository.save(turnoAActualizar);
             turnoSalidaDto = modelMapper.map(turnoAActualizar, TurnoSalidaDto.class);
-            LOGGER.warn("Turno actualizado: " + turnoSalidaDto);
+            LOGGER.warn("Turno actualizado: {}", JsonPrinter.toString(turnoSalidaDto));
         } else {
-            LOGGER.error("No fue posible encontrar datos de turno con el ID: " + id);
+
+            throw  new ResourceNotFoundException("No fue posible encontrar datos de turno con el ID: ");
         }
 
         return turnoSalidaDto;
